@@ -1,0 +1,15 @@
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+
+	implementation project(':sub-module-1')
+	implementation project(':sub-module-2')
+	implementation project(':sub-module-3')
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

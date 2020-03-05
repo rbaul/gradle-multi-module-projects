@@ -1,0 +1,26 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // can be use
+//    api 'org.apache.commons:commons-lang3:3.9'
+    api project(':sub-child-module-3')
+
+    // can be use
+//    compile 'org.apache.commons:commons-lang3:3.9'
+//    compile project(':sub-child-module-3')
+
+    // Can't use in other modules
+//    implementation 'org.apache.commons:commons-lang3:3.9'
+//    implementation project(':sub-child-module-3')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar.enabled = true
+bootJar.enabled = false
