@@ -1,0 +1,33 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+//    api 'org.apache.commons:commons-lang3:3.9'
+    compile 'org.apache.commons:commons-lang3:3.9'
+//    implementation 'org.apache.commons:commons-lang3:3.9'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set('javadoc')
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+jar.enabled = true
+bootJar.enabled = false
